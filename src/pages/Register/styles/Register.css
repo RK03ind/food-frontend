@@ -37,7 +37,7 @@
   border-radius: 4px;
 }
 
-button {
+.register-container > button {
   width: 100%;
   padding: 10px;
   border: none;
@@ -48,6 +48,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.register-container > button:hover {
   background-color: #0056b3;
 }

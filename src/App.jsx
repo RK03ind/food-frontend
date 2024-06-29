@@ -6,6 +6,8 @@ import Login from "./pages/Login/Login";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Home from "./pages/Home/Home";
+import Listings from "./pages/Listings/Listing";
+import UserPage from "./pages/UserPage/UserPage";
 
 const queryClient = new QueryClient();
 
@@ -30,7 +32,15 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/create-listing" element={<AddItem />} />
+          <Route path="/list" element={<Listings />} />
+          {authCtx.token ? (
+            <>
+              <Route path="/create-listing" element={<AddItem />} />
+              <Route path="/profile" element={<UserPage />} />
+            </>
+          ) : (
+            ""
+          )}
           {!authCtx.token ? (
             <>
               <Route path="/register" element={<Register />} />

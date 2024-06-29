@@ -1,6 +1,13 @@
+import { useContext } from "react";
+import useCounterAnimation from "../../hooks/useCounterAnimation";
 import styles from "./HomePage.module.css";
+import { AuthContext } from "../../context/AuthContext";
 
 const Home = () => {
+  const authCtx = useContext(AuthContext);
+  const { count: c1, counterRef: cr1 } = useCounterAnimation(5000, 1600);
+  const { count: c2, counterRef: cr2 } = useCounterAnimation(200, 1250);
+  const { count: c3, counterRef: cr3 } = useCounterAnimation(100, 1200);
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -10,12 +17,15 @@ const Home = () => {
           </div>
           <ul className={styles.navLinks}>
             <li>
-              <a href="#contact">All Lisitings</a>
+              <a href="/list">All Lisitings</a>
             </li>
           </ul>
           <div className={styles.btnWrapper}>
-            <a href="#donate" className={styles.btn}>
-              Login
+            <a
+              href={authCtx.token ? "/profile" : "/login"}
+              className={styles.btn}
+            >
+              {authCtx.token ? "Profile" : "Login"}
             </a>
             <a href="#donate" className={styles.btn}>
               Contact Us
@@ -38,15 +48,15 @@ const Home = () => {
 
       <section id="stats" className={styles.stats}>
         <div className={styles.stat}>
-          <h3>5000+</h3>
+          <h3 ref={cr1}>{c1}+</h3>
           <p>Meals Donated</p>
         </div>
         <div className={styles.stat}>
-          <h3>200+</h3>
+          <h3 ref={cr2}>{c2}+</h3>
           <p>Restaurants Participating</p>
         </div>
         <div className={styles.stat}>
-          <h3>100+</h3>
+          <h3 ref={cr3}>{c3}+</h3>
           <p>NGOs Supported</p>
         </div>
       </section>

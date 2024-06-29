@@ -19,7 +19,7 @@ const usePostItems = (url, isTokenRequired = false) => {
     },
 
     onError: (error) => {
-      console.log(error);
+      window.alert(error);
     },
   });
 };

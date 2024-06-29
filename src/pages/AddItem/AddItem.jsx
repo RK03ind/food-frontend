@@ -1,22 +1,22 @@
 import { useState } from "react";
 import useForm from "../../hooks/useForm";
 import usePostItems from "../../hooks/usePostItems";
+import styles from "./styles/AddItem.module.css";
 
 const AddItem = () => {
   const initialState = {
-    uid: "",
     image: "",
     title: "",
     description: "",
     estimateMeals: "",
-    status: "available",
     listingType: "donation",
   };
 
   const [formData, handleChange] = useForm(initialState);
   const [selectedFile, setSelectedFile] = useState(null);
   const { mutate, isLoading, isError, isSuccess } = usePostItems(
-    "http://localhost:5000/api/list"
+    "http://localhost:5000/api/list",
+    true
   );
 
   const handleFileChange = (event) => {
@@ -40,74 +40,78 @@ const AddItem = () => {
   };
 
   return (
-    <div>
-      <h1>Create Listing</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          UID:
+    <div className={styles.container}>
+      <h1 className={styles.heading}>Create Listing</h1>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <br />
+        <br />
+        <label className={styles.label}>
+          Image:
           <input
-            type="number"
-            name="uid"
-            value={formData.uid}
-            onChange={handleChange}
-            required
+            type="file"
+            name="image"
+            onChange={handleFileChange}
+            className={styles.inputFile}
           />
         </label>
         <br />
         <br />
-        <label>
-          Image:
-          <input type="file" name="image" onChange={handleFileChange} />
-        </label>
-        <br />
-        <br />
-        <label>
+        <label className={styles.label}>
           Title:
           <input
             type="text"
             name="title"
             value={formData.title}
             onChange={handleChange}
+            className={styles.input}
           />
         </label>
         <br />
         <br />
-        <label>
+        <label className={styles.label}>
           Description:
           <textarea
             name="description"
             value={formData.description}
             onChange={handleChange}
+            className={styles.textarea}
           ></textarea>
         </label>
         <br />
         <br />
-        <label>
-          Estimated Meals:
+        <label className={styles.label}>
+          Estimated Meals/No of Persons:
           <input
             type="number"
             name="estimateMeals"
             value={formData.estimateMeals}
             onChange={handleChange}
+            className={styles.input}
           />
         </label>
         <br />
         <br />
-        <label>
+        <label className={styles.label}>
           Status:
-          <select name="status" value={formData.status} onChange={handleChange}>
+          <select
+            name="status"
+            value={formData.status}
+            onChange={handleChange}
+            className={styles.select}
+          >
             <option value="available">Available</option>
             <option value="unavailable">Unavailable</option>
           </select>
         </label>
         <br />
         <br />
-        <label>
+        <label className={styles.label}>
           Listing Type:
           <select
             name="listingType"
             value={formData.listingType}
             onChange={handleChange}
+            className={styles.select}
           >
             <option value="donation">Donation</option>
             <option value="request">Request</option>
@@ -115,14 +119,18 @@ const AddItem = () => {
         </label>
         <br />
         <br />
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" disabled={isLoading} className={styles.button}>
           Create Listing
         </button>
       </form>
       {isSuccess && (
-        <div style={{ color: "green" }}>Listing created successfully!</div>
+        <div className={styles.successMessage}>
+          Listing created successfully!
+        </div>
       )}
-      {isError && <div style={{ color: "red" }}>Failed to create listing</div>}
+      {isError && (
+        <div className={styles.errorMessage}>Failed to create listing</div>
+      )}
     </div>
   );
 };

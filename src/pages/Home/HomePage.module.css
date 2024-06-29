@@ -96,6 +96,11 @@
   text-align: center;
 }
 
+.stat p {
+  font-weight: 700;
+  font-size: large;
+}
+
 .stat h3 {
   font-size: 36px;
   color: #ff6347;
