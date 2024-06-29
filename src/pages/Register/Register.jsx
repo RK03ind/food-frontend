@@ -19,7 +19,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirm)
-      window.alert("Confirm password and password doesn't match! ");
+      return window.alert("Confirm password and password doesn't match! ");
     mutation.mutate(formData, {
       onSuccess: (data) => {
         authCtx.setToken(data.data.token);
@@ -53,6 +53,9 @@ const Register = () => {
           <input type="password" id="password" name="confirm" required />
         </div>
         <button type="submit">Register</button>
+        <div className="link-wrapper">
+          <a href="/login">Already a user? Login</a>
+        </div>
       </form>
     </div>
   );

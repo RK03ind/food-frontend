@@ -11,7 +11,9 @@ const Listings = () => {
 
   return (
     <>
-      <h1>Available Food Listings</h1>
+      <h1 style={{ textAlign: "center" }}>
+        Available Foods & Donation Requests
+      </h1>
       <div className={styles.listings}>
         {data.map((listing) => (
           <ProductCard

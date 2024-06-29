@@ -10,13 +10,19 @@ const ProductCard = ({ image, title, description, status }) => {
           className={styles.image}
         />
       ) : (
-        "No image available"
+        ""
       )}
 
       <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>
         <span className={styles.status}>{status}</span>
+        <span
+          className={styles.status}
+          style={{ marginLeft: "1rem", background: "#ff6347" }}
+        >
+          connect
+        </span>
       </div>
     </div>
   );

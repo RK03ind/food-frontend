@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useForm from "../../hooks/useForm";
 import usePostItems from "../../hooks/usePostItems";
 import styles from "./styles/AddItem.module.css";
+import { useNavigate } from "react-router-dom";
 
 const AddItem = () => {
+  const navigate = useNavigate();
   const initialState = {
     image: "",
     title: "",
@@ -18,7 +20,9 @@ const AddItem = () => {
     "http://localhost:5000/api/list",
     true
   );
-
+  useEffect(() => {
+    if (isSuccess) navigate("/list");
+  }, [isSuccess]);
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -41,10 +45,8 @@ const AddItem = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.heading}>Create Listing</h1>
+      <h1 className={styles.heading}>Donate/Request</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <br />
-        <br />
         <label className={styles.label}>
           Image:
           <input
@@ -54,8 +56,7 @@ const AddItem = () => {
             className={styles.inputFile}
           />
         </label>
-        <br />
-        <br />
+
         <label className={styles.label}>
           Title:
           <input
@@ -66,8 +67,7 @@ const AddItem = () => {
             className={styles.input}
           />
         </label>
-        <br />
-        <br />
+
         <label className={styles.label}>
           Description:
           <textarea
@@ -77,8 +77,7 @@ const AddItem = () => {
             className={styles.textarea}
           ></textarea>
         </label>
-        <br />
-        <br />
+
         <label className={styles.label}>
           Estimated Meals/No of Persons:
           <input
@@ -89,22 +88,7 @@ const AddItem = () => {
             className={styles.input}
           />
         </label>
-        <br />
-        <br />
-        <label className={styles.label}>
-          Status:
-          <select
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-            className={styles.select}
-          >
-            <option value="available">Available</option>
-            <option value="unavailable">Unavailable</option>
-          </select>
-        </label>
-        <br />
-        <br />
+
         <label className={styles.label}>
           Listing Type:
           <select
@@ -117,8 +101,6 @@ const AddItem = () => {
             <option value="request">Request</option>
           </select>
         </label>
-        <br />
-        <br />
         <button type="submit" disabled={isLoading} className={styles.button}>
           Create Listing
         </button>

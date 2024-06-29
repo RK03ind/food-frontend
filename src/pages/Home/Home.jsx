@@ -40,7 +40,7 @@ const Home = () => {
           <p>
             Together, we can make a difference in the lives of those in need.
           </p>
-          <a href="#donate" className={styles.heroBtn}>
+          <a href="/create-listings" className={styles.heroBtn}>
             Donate Now
           </a>
         </div>
@@ -62,11 +62,11 @@ const Home = () => {
       </section>
 
       <section id="how-it-works" className={styles.howItWorks}>
-        <h2>How It Works</h2>
+        <h1>How It Works ?</h1>
         <div className={styles.steps}>
           <div className={styles.step}>
             <h3>1. Register</h3>
-            <p>Sign up as a restaurant or NGO.</p>
+            <p>Sign if you are a restaurant or NGO.</p>
           </div>
           <div className={styles.step}>
             <h3>2. Donate or Request</h3>
@@ -91,7 +91,7 @@ const Home = () => {
       </section>
 
       <footer className={styles.footer}>
-        <p>&copy; 2024 FoodDonate. All rights reserved.</p>
+        <p>&copy; 2024 Food4All. All rights reserved.</p>
       </footer>
     </div>
   );

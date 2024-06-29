@@ -20,15 +20,19 @@ const UserPage = () => {
       <ProfileCard profile={data.data.profile} />
       <h2 className={styles.subheading}>Donated Meals</h2>
       <div className={styles.donationsList}>
-        {data.data.donations.map((donation) => (
-          <ProductCard
-            key={donation.uid}
-            image={donation.image}
-            title={donation.title}
-            description={donation.description}
-            status={donation.status}
-          />
-        ))}
+        {data.data.donations.length == 0 ? (
+          <h3>No Meals donated yet!</h3>
+        ) : (
+          data.data.donations.map((donation) => (
+            <ProductCard
+              key={donation.uid}
+              image={donation.image}
+              title={donation.title}
+              description={donation.description}
+              status={donation.status}
+            />
+          ))
+        )}
       </div>
     </div>
   );
