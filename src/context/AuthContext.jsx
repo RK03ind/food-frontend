@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const AuthContext = createContext({
   token: "",
-  setToken: () => {},
+  setToken: (x) => x,
 });
 
 const AuthProvider = ({ children }) => {
@@ -12,11 +12,11 @@ const AuthProvider = ({ children }) => {
   } catch {
     storedAuthData = null;
   }
-  const [userData, setUserData] = useState(storedAuthData);
+  const [token, setToken] = useState(storedAuthData);
 
   const contextData = {
-    userData: userData,
-    setUserData: setUserData,
+    token,
+    setToken,
   };
   return (
     <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>
