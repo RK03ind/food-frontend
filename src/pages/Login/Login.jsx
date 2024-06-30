@@ -46,7 +46,11 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <form className="login-form" onChange={handleChange}>
+      <form
+        className="login-form"
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+      >
         <h2>Login</h2>
         <div className="form-group">
           <label htmlFor="email">Email</label>
@@ -56,9 +60,7 @@ const Login = () => {
           <label htmlFor="password">Password</label>
           <input type="password" id="password" name="password" />
         </div>
-        <button type="submit" onSubmit={handleSubmit}>
-          Login
-        </button>
+        <button type="submit">Login</button>
         {/* <button onSubmit={logInGuest} className="btn2">
           Login as Guest
         </button> */}

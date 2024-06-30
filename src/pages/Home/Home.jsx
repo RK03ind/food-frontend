@@ -17,7 +17,7 @@ const Home = () => {
           </div>
           <ul className={styles.navLinks}>
             <li>
-              <a href="/list">All Lisitings</a>
+              <a href="/list">All Listings</a>
             </li>
           </ul>
           <div className={styles.btnWrapper}>
@@ -40,8 +40,11 @@ const Home = () => {
           <p>
             Together, we can make a difference in the lives of those in need.
           </p>
-          <a href="/create-listings" className={styles.heroBtn}>
-            Donate Now
+          <a
+            href={authCtx.token ? "/create-listing" : "/register"}
+            className={styles.heroBtn}
+          >
+            {authCtx.token ? "Donate Now" : "Register Now to Donate"}
           </a>
         </div>
       </section>

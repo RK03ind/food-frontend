@@ -49,7 +49,7 @@ const App = () => {
           ) : (
             ""
           )}
-          <Route path="*" element={<Navigate to="/register" />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
